@@ -77,3 +77,12 @@ void ClapTrap::setName(std::string name) {
 std::string ClapTrap::getName(void) const {
 	return this->_name;
 }
+
+ClapTrap& ClapTrap::operator=(ClapTrap& copy) {
+	std::cout << BOLD_YELLOW << "Assignation operator called. Copying " << BOLD_CYAN << copy._name << RESET << BOLD_YELLOW << "!" << RESET << std::endl;
+	this->_name = copy._name;
+	this->_hitPoints = copy._hitPoints;
+	this->_energyPoints = copy._energyPoints;
+	this->_attackDamage = copy._attackDamage;
+	return *this;
+}

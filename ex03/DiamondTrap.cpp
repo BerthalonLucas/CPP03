@@ -10,12 +10,13 @@ DiamondTrap::DiamondTrap(DiamondTrap& copy) {
 	this->_name = copy._name;
 }
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name") {
+DiamondTrap::DiamondTrap(std::string name) {
 	std::cout << BOLD_GREEN << "Diamond constructor for " << BOLD_CYAN << name << RESET << BOLD_GREEN << " called. A new DiamondTrap is born! Ready to rumble!" << RESET << std::endl;
 	_name = name;
-	this->_hitPoints = DiamondTrap::FragTrap::_hitPoints;
-	this->_energyPoints = DiamondTrap::ScavTrap::_energyPoints;
-	this->_attackDamage = DiamondTrap::FragTrap::_attackDamage;
+	ClapTrap::_name = name + "_clap_name";
+	this->_hitPoints = 100;
+	this->_energyPoints = 50;
+	this->_attackDamage = 30;
 	std::cout << BOLD_WHITE << "DiamondTrap " << this->_name << " has " << this->_hitPoints << " hit points, " << this->_energyPoints << " energy points, and " << this->_attackDamage << " attack damage." << RESET << std::endl;
 }
 
@@ -29,18 +30,8 @@ void DiamondTrap::whoAmI() {
 }
 
 void DiamondTrap::attack(std::string const & target) {
-	if (this->_hitPoints <= 0){
-		if (!this->_name.empty())
-			std::cout << BOLD_RED << this->_name << " is out of commission and can't attack!" << RESET << std::endl;
-	}
-	else if (this->_energyPoints <= 0){
-		if (!this->_name.empty())
-			std::cout << BOLD_YELLOW << "Not enough energy points for " << this->_name << " to attack. Time for a recharge!" << RESET << std::endl;
-	}
-	else {
-		std::cout << BOLD_MAGENTA << this->_name << " attacks " << target << ", causing " << this->_attackDamage << " points of damage!" << RESET << std::endl;
-		this->_energyPoints -= 1;
-	}
+	FragTrap::_name = this->_name;
+	FragTrap::attack(target);
 }
 
 void DiamondTrap::takeDamage(unsigned int amount) {
@@ -80,4 +71,10 @@ void DiamondTrap::beRepaired(unsigned int amount) {
 		if (!this->_name.empty())
 			std::cout << BOLD_YELLOW << this->_name << " has been repaired for " << amount << " points and now has " << this->_hitPoints << " hit points." << RESET << std::endl;
 	}
+}
+
+DiamondTrap& DiamondTrap::operator=(DiamondTrap& copy) {
+	std::cout << BOLD_YELLOW << "DiamondTrap assignment operator called. Copying " << BOLD_CYAN << copy._name << RESET << BOLD_YELLOW << "!" << RESET << std::endl;
+	this->_name = copy._name;
+	return *this;
 }

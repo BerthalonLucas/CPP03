@@ -80,3 +80,12 @@ void ScavTrap::beRepaired(unsigned int amount) {
 void ScavTrap::guardGate() {
 	std::cout << BOLD_CYAN << this->_name << RESET << BOLD_CYAN << " has entered Gate Keeper mode!" << RESET << std::endl;
 }
+
+ScavTrap& ScavTrap::operator=(ScavTrap& copy) {
+	std::cout << BOLD_YELLOW << "Assignation operator called. Copying " << BOLD_CYAN << copy._name << RESET << BOLD_YELLOW << "!" << RESET << std::endl;
+	this->_name = copy._name;
+	this->_hitPoints = copy._hitPoints;
+	this->_energyPoints = copy._energyPoints;
+	this->_attackDamage = copy._attackDamage;
+	return *this;
+}

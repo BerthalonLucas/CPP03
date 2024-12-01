@@ -11,6 +11,7 @@ class ScavTrap : public virtual ClapTrap {
 		ScavTrap(std::string name);
 		ScavTrap(unsigned int energyPoints);
 		~ScavTrap();
+		ScavTrap& operator=(ScavTrap& copy);
 		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

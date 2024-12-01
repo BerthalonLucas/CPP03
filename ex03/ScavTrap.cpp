@@ -89,3 +89,12 @@ void ScavTrap::guardGate() {
 unsigned int ScavTrap::getEnergyPoints(void) const {
 	return 100;
 }
+
+ScavTrap& ScavTrap::operator=(ScavTrap& copy) {
+	std::cout << BOLD_YELLOW << "Assignation operator called. Assigning " << BOLD_CYAN << copy._name << RESET << BOLD_YELLOW << " to " << BOLD_CYAN << this->_name << RESET << BOLD_YELLOW << "." << RESET << std::endl;
+	this->_name = copy._name;
+	this->_hitPoints = copy._hitPoints;
+	this->_energyPoints = copy._energyPoints;
+	this->_attackDamage = copy._attackDamage;
+	return *this;
+}

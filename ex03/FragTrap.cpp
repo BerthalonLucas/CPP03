@@ -98,3 +98,11 @@ void FragTrap::highFivesGuys(void) {
 		this->_energyPoints -= 1;
 	}
 }
+
+FragTrap& FragTrap::operator=(FragTrap& copy) {
+	this->_name = copy._name;
+	this->_hitPoints = copy._hitPoints;
+	this->_energyPoints = copy._energyPoints;
+	this->_attackDamage = copy._attackDamage;
+	return *this;
+}

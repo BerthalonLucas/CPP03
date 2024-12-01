@@ -6,7 +6,7 @@
 int main(void) {
 	DiamondTrap diamondTrap("bloublou");
 	diamondTrap.whoAmI();
-	diamondTrap.attack("zizi");
+	diamondTrap.attack("target");
 	diamondTrap.takeDamage(10);
 	diamondTrap.beRepaired(10);
 	return 0;

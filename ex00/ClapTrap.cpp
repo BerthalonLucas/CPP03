@@ -73,4 +73,12 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	}
 }
 
-
+ClapTrap& ClapTrap::operator=(ClapTrap& copy) {
+	if (this == &copy)
+		return *this;
+	this->_name = copy._name;
+	this->_hitPoints = copy._hitPoints;
+	this->_energyPoints = copy._energyPoints;
+	this->_attackDamage = copy._attackDamage;
+	return *this;
+}
